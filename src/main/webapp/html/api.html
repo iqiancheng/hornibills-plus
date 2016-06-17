@@ -1,0 +1,111 @@
+<ol id="top" class="breadcrumb">
+    <li><a href="/">主页</a></li>
+    <li class="active">{{name}}</li>
+</ol>
+<div style="position: fixed; left: 0; top: 100px;">
+    <div class="btn-group-vertical">
+        <!--
+        <button  class="btn btn-success" ng-click="add();">Add</button>
+        -->
+        <!--         <button  class="btn btn-default btn-xs" ng-click="menu=!menu">{{!menu?'展开':'收起'}}目录</button> -->
+        <button class="btn btn-info" ng-click="menu=!menu">{{!menu?'收起':'目录'}}</button>
+        <a ng-show="!menu" ng-repeat="item in list" class="btn btn-default btn-xs menu-li"
+           ng-href="#/api/{{href}}/{{item.name}}" style="text-align:left;">{{item.name}}</a>
+    </div>
+</div>
+
+<div style="position: fixed;right: 0; bottom: 20px;">
+    <button class="btn btn-info" ng-click="back();">回到顶部</button>
+</div>
+
+<div>
+
+    <div ng-show="!current">
+        <div class="clearfix" style="margin: 5px;">
+            <label class="pull-right" for="search">
+                <input placeholder="搜索" id="search" class="form-control input-sm " ng-model="search"
+                       style="/*width: 300px;*/" type="search"/>
+            </label>
+        </div>
+        <div class="panel panel-default" ng-show="!list">
+            <h3 class="panel-title" style="margin-left:5px;margin-top:50px;margin-bottom:50px">Oops~
+                此分类下的接口文档被千橙这小子吃掉了~</h3>
+        </div>
+        <div class="panel panel-default" ng-repeat="item in list|filter: search">
+            <div id="{{item.name}}" class="panel-heading">
+                <h3 class="panel-title">
+                    {{item.name}}
+                    <!-- 
+                     -->
+                    <span class="btn-info btn-xs pull-right" ng-show="{{item.agentOnly}}"
+                          title="可供代理商订货平台端调用">代理商</span>
+                    <span class="btn-danger btn-xs pull-right" style="margin-right: 5px" ng-show="{{item.platformOnly}}"
+                          title="可供厂商端管理后台调用">厂商</span>
+                </h3>
+                <h4><kbd>{{item.method || 'GET'}}</kbd> - <kbd>{{item.url}}</kbd></h4>
+            </div>
+            <div class="panel-body">
+                <div class="alert alert-info">{{item.description}}</div>
+                <div ng-show="item.params.length > 0">
+                    <h5>请求参数</h5>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th width="150px;">参数名</th>
+                            <th width="80px;">必传</th>
+                            <th width="150px;">默认值</th>
+                            <th width="150px;">类型</th>
+                            <th>描述</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="param in item.params">
+                            <td>{{param.Name}}</td>
+                            <td>{{param.Required}}</td>
+                            <td>{{param.Default || "-"}}</td>
+                            <td>{{param.Type}}</td>
+                            <td>{{param.Description}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div ng-show="item.response.length > 0">
+                    <h5>返回值</h5>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th width="150px;">参数名</th>
+                            <!--  <th width="80px;">必传</th>
+                             <th width="150px;">默认值</th> -->
+                            <th width="150px;">类型</th>
+                            <th>描述</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="param in item.response">
+                            <td>{{param.Name}}</td>
+                            <!-- <td>{{param.Required}}</td>
+                            <td>{{param.Default || "-"}}</td> -->
+                            <td ng-show="param.Type=='Order' || param.Type=='OrderDetail' || param.Type=='OrderLog' || param.Type=='OrderRemark' || param.Type=='OrderAttachment' || param.Type=='LogisticsBill' || param.Type=='LogisticsBillDetail' || param.Type=='Customer' || param.Type=='CustomerType'">
+                                <a href="/#/base#{{param.Type}}?v=1.0">{{param.Type}}</a>
+                            </td>
+                            <td ng-show="param.Type!='Order' && param.Type!='OrderDetail' && param.Type!='OrderLog' && param.Type!='OrderRemark' && param.Type!='OrderAttachment' && param.Type!='LogisticsBill' && param.Type!='LogisticsBillDetail' && param.Type!='Customer' && param.Type!='CustomerType'">
+                                {{param.Type}}
+                            </td>
+                            <td>{{param.Description}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <h4 ng-show="item.demo">Demo:</h4>
+                请求示例：
+                <div ng-show="item.demo">
+                    <pre>{{item.demo.Req}}</pre>
+                    返回示例：
+                    <pre>{{item.demo.Rsp}}</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

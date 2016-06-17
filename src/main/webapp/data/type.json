@@ -1,0 +1,22 @@
+[
+  {
+    "name": "订单",
+    "href": "TYPE_ORDER",
+    "desc": "订单相关接口。"
+  },
+  {
+    "name": "商品",
+    "href": "TYPE_PRODUCT",
+    "desc": "商品相关接口。"
+  },
+  {
+    "name": "出库单",
+    "href": "TYPE_LOGISTICS",
+    "desc": "出库单相关接口。"
+  },
+  {
+    "name": "客户",
+    "href": "TYPE_CUSTOMER",
+    "desc": "客户相关接口。"
+  }
+]

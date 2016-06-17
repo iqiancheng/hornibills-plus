@@ -1,0 +1,165 @@
+[
+  {
+    "name": "商品列表",
+    "url": "/v2/goods/goods_list.json",
+    "method": "GET",
+    "description": "获取(查询)当前用户当前账套的商品列表。",
+    "platformOnly": null,
+    "agentOnly": null,
+    "params": [
+      {
+        "Name": "access_token",
+        "Required": "是",
+        "Default": "",
+        "Type": "string",
+        "Description": "开发者准入标识，调用时必须使用。"
+      },
+      {
+        "Name": "currentPage",
+        "Required": "否",
+        "Default": "1",
+        "Type": "int",
+        "Description": "当前页码"
+      },
+      {
+        "Name": "pageSize",
+        "Required": "否",
+        "Default": "100",
+        "Type": "int",
+        "Description": "分页大小"
+      },
+      {
+        "Name": "goodsTypeId",
+        "Required": "否",
+        "Default": "",
+        "Type": "long",
+        "Description": "商品类别ID"
+      },
+      {
+        "Name": "name",
+        "Required": "否",
+        "Default": "",
+        "Type": "string",
+        "Description": "商品名字（支持模糊匹配）"
+      }
+    ],
+    "response": [
+      {
+        "Name": "currentPage",
+        "Required": "",
+        "Default": "1",
+        "Type": "int",
+        "Description": "当前页码"
+      },
+      {
+        "Name": "pageSize",
+        "Required": "",
+        "Default": "100",
+        "Type": "int",
+        "Description": "分页大小"
+      },
+      {
+        "Name": "totalCount",
+        "Required": "",
+        "Default": "",
+        "Type": "long",
+        "Description": "商品记录总数"
+      },
+      {
+        "Name": "totalPage",
+        "Required": "",
+        "Default": "",
+        "Type": "long",
+        "Description": "总页数"
+      },
+      {
+        "Name": "items",
+        "Required": "",
+        "Default": "",
+        "Type": "Array",
+        "Description": "商品记录集合"
+      },
+      {
+        "Name": "item.barcode",
+        "Required": "",
+        "Default": "",
+        "Type": "string",
+        "Description": "商品条形码"
+      },
+      {
+        "Name": "item.id",
+        "Required": "",
+        "Default": "",
+        "Type": "string",
+        "Description": "商品ID"
+      },
+      {
+        "Name": "item.code",
+        "Required": "",
+        "Default": "",
+        "Type": "string",
+        "Description": "商品编码"
+      },
+      {
+        "Name": "item.name",
+        "Required": "",
+        "Default": "",
+        "Type": "string",
+        "Description": "商品名称"
+      },
+      {
+        "Name": "item.inventoryModifyTime",
+        "Required": "",
+        "Default": "",
+        "Type": "string",
+        "Description": "出库时间"
+      },
+      {
+        "Name": "item.inventoryCount",
+        "Required": "",
+        "Default": "",
+        "Type": "string",
+        "Description": "库存数量"
+      },
+      {
+        "Name": "item.inventoryVersion",
+        "Required": "",
+        "Default": "",
+        "Type": "long",
+        "Description": "版本号"
+      },
+      {
+        "Name": "item.isGroup",
+        "Required": "",
+        "Default": "",
+        "Type": "long",
+        "Description": "版本号"
+      },
+      {
+        "Name": "item.marketPrice",
+        "Required": "",
+        "Default": "",
+        "Type": "long",
+        "Description": "市场价"
+      },
+      {
+        "Name": "item.orderPrice",
+        "Required": "",
+        "Default": "",
+        "Type": "long",
+        "Description": "订货价"
+      },
+      {
+        "Name": "item.prepareCount",
+        "Required": "",
+        "Default": "",
+        "Type": "long",
+        "Description": "订货价"
+      }
+    ],
+    "demo": {
+      "Req": "GET /v2/goods/goods_list.json?access_token=1a7d3341263d409b261d2648b1da8ce4&currentPage=1&pageSize=10",
+      "Rsp": "HTTP/1.1 200 OK \napi-version:v2 \nContent-Type:application/json;charset=utf-8 \nX-RateLimit-Limit:1000 \nX-RateLimit-Remaining:996 \nX-RateLimit-Reset:1422952442894 \n{\"code\":200,\"message\":\"操作成功\",\"data\":{\"currentPage\":1,\"items\":[{\"album\":[\"9271/cut_32d75337-813e-4a52-b0a0-b6cb27e1a42c.jpg\",\"9271/cut_cff7617e-6358-42b0-9451-eb3cafe21d74.jpeg\",\"9271/cut_83620a86-32be-4371-8650-f664e0116bb8.jpg\",\"9271/cut_dec479bb-3d1d-44e6-a473-fe174abe32e3.jpg\",\"9271/cut_05825271-9808-4e7f-971c-7e822fcc0d7b.jpg\",\"9271/cut_43c04519-5350-4c40-9062-1ec6877e3dd7.jpg\"],\"albumList\":[{\"createTime\":\"2014-12-04 20:34:59\",\"id\":518807,\"imgName\":\"20141204192514_3 - 副本.jpg\",\"imgUrl\":\"32d75337-813e-4a52-b0a0-b6cb27e1a42c.jpg\",\"imgVersion\":1,\"productId\":12942013,\"productSummaryId\":12944011,\"remark\":\"\",\"type\":1},{\"createTime\":\"2014-12-04 20:34:59\",\"id\":518808,\"imgName\":\"20141204192543_1.jpeg\",\"imgUrl\":\"cff7617e-6358-42b0-9451-eb3cafe21d74.jpeg\",\"imgVersion\":1,\"productId\":12942013,\"productSummaryId\":12944011,\"remark\":\"\",\"type\":1},{\"createTime\":\"2014-12-04 20:34:59\",\"id\":518813,\"imgName\":\"20141204193223_4.jpg\",\"imgUrl\":\"83620a86-32be-4371-8650-f664e0116bb8.jpg\",\"imgVersion\":1,\"productId\":12942013,\"productSummaryId\":12944011,\"remark\":\"\",\"type\":1},{\"createTime\":\"2014-12-04 20:34:59\",\"id\":518817,\"imgName\":\"20141204194905_菠萝.jpg\",\"imgUrl\":\"dec479bb-3d1d-44e6-a473-fe174abe32e3.jpg\",\"imgVersion\":1,\"productId\":12942013,\"productSummaryId\":12944011,\"remark\":\"\",\"type\":1},{\"createTime\":\"2014-12-04 20:34:59\",\"id\":518818,\"imgName\":\"20141204194910_榴莲.jpg\",\"imgUrl\":\"05825271-9808-4e7f-971c-7e822fcc0d7b.jpg\",\"imgVersion\":1,\"productId\":12942013,\"productSummaryId\":12944011,\"remark\":\"\",\"type\":1},{\"createTime\":\"2014-12-04 20:34:59\",\"id\":518819,\"imgName\":\"20141204195115_抱枕-大尺寸图片.jpg\",\"imgUrl\":\"43c04519-5350-4c40-9062-1ec6877e3dd7.jpg\",\"imgVersion\":1,\"productId\":12942013,\"productSummaryId\":12944011,\"remark\":\"\",\"type\":1}],\"attachmentList\":[],\"barcode\":\"\",\"code\":\"P5215974162\",\"createTime\":\"2014-12-04 11:18:41\",\"delete\":\"\",\"description\":\"\",\"id\":12942013,\"imgUrl\":\"9271/a6ce9301-6022-41bc-a7d6-e1646791390d.jpeg\",\"imgUrl_200\":\"9271/_200_a6ce9301-6022-41bc-a7d6-e1646791390d.jpeg\",\"imgUrl_480\":\"9271/_480x480_a6ce9301-6022-41bc-a7d6-e1646791390d.jpeg\",\"imgUrl_60\":\"9271/_60_a6ce9301-6022-41bc-a7d6-e1646791390d.jpeg\",\"imgUrl_cut\":\"9271/cut_a6ce9301-6022-41bc-a7d6-e1646791390d.jpeg\",\"inventoryCount\":100,\"inventoryModifyTime\":\"2014-12-08 17:09:42\",\"inventoryStatus\":\"\",\"inventoryVersion\":10,\"isGroup\":\"0\",\"keywords\":\"原产进口护手霜\",\"mainImg\":{\"createTime\":\"2014-12-04 20:39:46\",\"id\":518829,\"imgName\":\"20141204203940_1.jpeg\",\"imgUrl\":\"a6ce9301-6022-41bc-a7d6-e1646791390d.jpeg\",\"imgVersion\":1,\"productId\":12942013,\"productSummaryId\":12944011,\"remark\":\"\",\"type\":0},\"marketPrice\":70,\"modifyTime\":\"2014-12-08 15:44:32\",\"mulspec1Name\":\"等级\",\"mulspec1Value\":\"小野菊（50g）\",\"mulspec2Name\":\"产地\",\"mulspec2Value\":\"德国\",\"mulspec3Name\":\"\",\"mulspec3Value\":\"\",\"mulspec4Name\":\"\",\"mulspec4Value\":\"\",\"mulspec5Name\":\"\",\"mulspec5Value\":\"\",\"mulspecTemplateId\":1953,\"mulspecTemplateName\":\"\",\"name\":\"护手霜11\",\"opTime\":\"\",\"orderPrice\":70,\"prepareCount\":2,\"priceList\":[{\"customerType\":{\"discountrate\":3,\"id\":11016608,\"isDefault\":\"\",\"level\":0,\"modifyTime\":\"\",\"name\":\"级别3\",\"priceModel\":\"0\",\"status\":\"0\"},\"customerTypeId\":11016608,\"id\":0,\"isForbidden\":\"0\",\"marketPrice\":70,\"minQuantity\":0,\"orderPrice\":210,\"product\":null,\"productId\":12942013,\"productSummaryId\":0,\"remark\":\"\",\"status\":\"\"},{\"customerType\":{\"discountrate\":0.95,\"id\":11016607,\"isDefault\":\"\",\"level\":0,\"modifyTime\":\"\",\"name\":\"级别2\",\"priceModel\":\"0\",\"status\":\"0\"},\"customerTypeId\":11016607,\"id\":33082873,\"isForbidden\":\"0\",\"marketPrice\":50,\"minQuantity\":0,\"orderPrice\":66.5,\"product\":null,\"productId\":12942013,\"productSummaryId\":0,\"remark\":\"\",\"status\":\"\"},{\"customerType\":{\"discountrate\":0.75,\"id\":11016606,\"isDefault\":\"\",\"level\":0,\"modifyTime\":\"\",\"name\":\"级别1\",\"priceModel\":\"0\",\"status\":\"0\"},\"customerTypeId\":11016606,\"id\":33082874,\"isForbidden\":\"0\",\"marketPrice\":50,\"minQuantity\":0,\"orderPrice\":52.5,\"product\":null,\"productId\":12942013,\"productSummaryId\":0,\"remark\":\"\",\"status\":\"\"},{\"customerType\":{\"discountrate\":0.97,\"id\":11016605,\"isDefault\":\"\",\"level\":0,\"modifyTime\":\"\",\"name\":\"铁牌\",\"priceModel\":\"0\",\"status\":\"0\"},\"customerTypeId\":11016605,\"id\":33082875,\"isForbidden\":\"0\",\"marketPrice\":50,\"minQuantity\":0,\"orderPrice\":67.9,\"product\":null,\"productId\":12942013,\"productSummaryId\":0,\"remark\":\"\",\"status\":\"\"},{\"customerType\":{\"discountrate\":0.95,\"id\":11016604,\"isDefault\":\"\",\"level\":0,\"modifyTime\":\"\",\"name\":\"铜牌\",\"priceModel\":\"0\",\"status\":\"0\"},\"customerTypeId\":11016604,\"id\":33082876,\"isForbidden\":\"0\",\"marketPrice\":50,\"minQuantity\":0,\"orderPrice\":66.5,\"product\":null,\"productId\":12942013,\"productSummaryId\":0,\"remark\":\"\",\"status\":\"\"},{\"customerType\":{\"discountrate\":0.9,\"id\":11016603,\"isDefault\":\"\",\"level\":0,\"modifyTime\":\"\",\"name\":\"银牌\",\"priceModel\":\"0\",\"status\":\"0\"},\"customerTypeId\":11016603,\"id\":33082877,\"isForbidden\":\"0\",\"marketPrice\":50,\"minQuantity\":0,\"orderPrice\":63,\"product\":null,\"productId\":12942013,\"productSummaryId\":0,\"remark\":\"\",\"status\":\"\"},{\"customerType\":{\"discountrate\":0.8,\"id\":11016602,\"isDefault\":\"\",\"level\":0,\"modifyTime\":\"\",\"name\":\"金牌\",\"priceModel\":\"0\",\"status\":\"0\"},\"customerTypeId\":11016602,\"id\":33082878,\"isForbidden\":\"0\",\"marketPrice\":50,\"minQuantity\":0,\"orderPrice\":56,\"product\":null,\"productId\":12942013,\"productSummaryId\":0,\"remark\":\"\",\"status\":\"\"},{\"customerType\":{\"discountrate\":1,\"id\":11016601,\"isDefault\":\"\",\"level\":0,\"modifyTime\":\"\",\"name\":\"钻石\",\"priceModel\":\"0\",\"status\":\"0\"},\"customerTypeId\":11016601,\"id\":33082879,\"isForbidden\":\"0\",\"marketPrice\":50,\"minQuantity\":0,\"orderPrice\":70,\"product\":null,\"productId\":12942013,\"productSummaryId\":0,\"remark\":\"\",\"status\":\"\"},{\"customerType\":{\"discountrate\":0.55,\"id\":11016591,\"isDefault\":\"1\",\"level\":0,\"modifyTime\":\"\",\"name\":\"普通\",\"priceModel\":\"0\",\"status\":\"0\"},\"customerTypeId\":11016591,\"id\":33082880,\"isForbidden\":\"0\",\"marketPrice\":50,\"minQuantity\":0,\"orderPrice\":38.5,\"product\":null,\"productId\":12942013,\"productSummaryId\":0,\"remark\":\"\",\"status\":\"\"}],\"productCollection\":null,\"productSummaryId\":12944011,\"productType\":{\"id\":11036622,\"isDefault\":\"\",\"leafTypeFlag\":\"1\",\"modifyTime\":\"\",\"name\":\"榴莲\",\"parentTypeId\":11034081,\"status\":\"0\",\"typeLevel\":2},\"productTypeId\":11036622,\"productUnitId\":11025171,\"productUnitName\":\"里\",\"promotionStatus\":\"\",\"promotionStrategy\":{\"cityId\":0,\"countryId\":0,\"createTime\":\"2014-12-04 17:18:17\",\"creatorId\":0,\"customerTypeId\":0,\"districtId\":0,\"endTime\":\"2014-12-31 23:59:59\",\"gifts\":[],\"id\":11017681,\"isPerMeetExecute\":\"1\",\"meetCount\":0,\"meetMoney\":0,\"method\":\"2\",\"minusMoney\":0,\"modifierId\":0,\"modifyTime\":\"2014-12-04 17:18:17\",\"name\":\"\",\"period\":true,\"promotionDiscount\":0,\"promotionMoney\":10,\"promotionProduct\":null,\"promotionProductId\":12942013,\"provinceId\":0,\"queryType\":\"1\",\"remark\":\"\",\"showStatus\":\"促销中\",\"startTime\":\"2014-12-04 00:00:00\",\"status\":\"0\",\"type\":\"1\"},\"promotionStrategyList\":[{\"cityId\":0,\"countryId\":0,\"createTime\":\"2014-12-04 17:18:17\",\"creatorId\":0,\"customerTypeId\":0,\"districtId\":0,\"endTime\":\"2014-12-31 23:59:59\",\"gifts\":[],\"id\":11017681,\"isPerMeetExecute\":\"1\",\"meetCount\":0,\"meetMoney\":0,\"method\":\"2\",\"minusMoney\":0,\"modifierId\":0,\"modifyTime\":\"2014-12-04 17:18:17\",\"name\":\"\",\"period\":true,\"promotionDiscount\":0,\"promotionMoney\":10,\"promotionProduct\":null,\"promotionProductId\":12942013,\"provinceId\":0,\"queryType\":\"1\",\"remark\":\"\",\"showStatus\":\"促销中\",\"startTime\":\"2014-12-04 00:00:00\",\"status\":\"0\",\"type\":\"1\"}],\"property1\":\"11111\",\"property10\":\"\",\"property2\":\"\",\"property3\":\"\",\"property4\":\"\",\"property5\":\"\",\"property6\":\"\",\"property7\":\"\",\"property8\":\"\",\"property9\":\"\",\"queryProductTypeIds\":[],\"queryStatus\":[],\"remark\":\"\",\"shoppingCart\":null,\"sortNum\":1111,\"sortTime\":\"2014-12-08 15:44:32\",\"spec\":\"等级：小野菊（50g），产地：德国\",\"specDesc\":\"等级：小野菊（50g），产地：德国\",\"status\":\"0\",\"subProductList\":[],\"summaryCount\":0,\"tagId\":0,\"warningCount\":10,\"weight\":0.7}],\"pageSize\":1,\"totalCount\":114,\"totalPage\":114}}"
+    }
+  }
+]

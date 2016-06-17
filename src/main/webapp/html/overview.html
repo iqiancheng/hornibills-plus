@@ -1,0 +1,360 @@
+<ol class="breadcrumb">
+    <li><a href="#/">主页</a></li>
+    <li class="active">千橙工坊API概述</li>
+</ol>
+<div>
+    <p style="font-weight: bold;">1. 简介</p>
+    <p style="font-weight: bold; text-indent: 2em">1.1 API基本功能</p>
+
+    <p style="text-indent: 2em">1）
+        订单管理，包括新下订单，修改订单，删除订单，作废订单，回退订单，获取修订单列表</p>
+
+    <p style="text-indent: 2em">2） 商品管理，包括新增商品，修改商品，删除商品，获取商品列表</p>
+
+    <p style="text-indent: 2em">3） 客户管理，包括新增客户，修改客户，开通客户，禁用客户，获取客户列表</p>
+
+    <p style="text-indent: 2em">4） 客户类型管理，包括客户类型的增删改查</p>
+
+    <p style="text-indent: 2em">5） 出库发货管理，包括订单出库、发货，修改出库发货记录，作废出库发货记录</p>
+
+    <p style="text-indent: 2em">6） 用户基本信息管理：用户信息获取，用户修改密码</p>
+    <br/>
+    <p style="font-weight: bold;">2. 调用方式</p>
+
+    <p style="margin-left: 2em">千橙工坊API 接口调用是通过向千橙工坊API的服务端地址发送HTTP GET
+        请求，并按照接口说明在请求中加入相应请求参数来完成的；根据请求的处理情况，系统会返回处理结果。</p>
+
+    <p style="font-weight: bold; text-indent: 2em">2.1 请求结构</p>
+
+    <p style="font-weight: bold; text-indent: 4em">2.1.1 服务地址</p>
+
+    <p style="text-indent: 4em">千橙工坊API的服务接入地址为：api.qiancheng.me</p>
+
+    <p style="font-weight: bold; text-indent: 4em">2.1.2 通讯协议</p>
+
+    <p style="margin-left: 4em">支持通过HTTP或HTTPS通道进行请求通信。为了获得更高的安全性，推荐您使用HTTPS通道发送请求。</p>
+
+    <p style="font-weight: bold; text-indent: 4em">2.1.3 请求方法</p>
+
+    <p style="margin-left: 4em;">支持HTTP
+        GET方法发送请求，这种方式下请求参数需要包含在请求的URL中。</p>
+
+    <p style="font-weight: bold; text-indent: 4em">2.1.4 请求参数</p>
+
+    <p style="margin-left: 4em;">每个操作都需要包含的公共请求参数和指定操作所特有的请求参数。每一个请求URI都可以加上
+        .json 、.xml、.stream分别返回json格式、xml格式、文件流（前提是一个下载的url）。例如
+        ：原uri：/order/order_detail，返回xml的uri是：/order/order_detail.xml</p>
+
+    <p style="font-weight: bold; text-indent: 4em">2.1.5 字符编码</p>
+
+    <p style="margin-left: 4em;">请求及返回结果都使用UTF-8字符集进行编码。</p>
+
+    <p style="margin-left: 4em;">所有的请求都需要设置请求Content-Type</p>
+
+    <p style="margin-left: 4em;">Content-Type:
+        application/x-www-form-urlencoded; charset=UTF-8</p>
+
+    <p style="font-weight: bold; text-indent: 4em">2.2.6 时间格式</p>
+
+    <p style="text-indent: 4em">所有返回时间都默认使用yyyy-MM-dd HH:mm:ss
+        格式，特殊的会特别说明</p>
+
+    <p style="font-weight: bold; text-indent: 2em">2.2 公共参数</p>
+
+    <table cellspacing="0" cellpadding="0" class="table"
+           style="margin-left: 2em;">
+        <tbody>
+        <tr>
+            <td>名称</td>
+            <td>类型</td>
+            <td width=100>是否必须</td>
+            <td>描述</td>
+        </tr>
+
+        <tr>
+            <td>access_token</td>
+            <td>string</td>
+            <td>是</td>
+            <td>开发者准入标识，调用时必须使用</td>
+        </tr>
+
+        <tr>
+            <td>format</td>
+            <td>String</td>
+            <td>否</td>
+            <td>返回值类型，默认返回json，这个作用与在uri后面加.json是一样的</td>
+        </tr>
+
+        <tr>
+            <td>api-version</td>
+            <td>String</td>
+            <td>否</td>
+            <td>Api的版本，枚举值，默认是v1。现在支持的版本是
+                v1、v2、v3同时可以在header假如这个参数，作用一样，也可以在uri前面加入。
+                </p>
+
+                <p>例如原uri：/order/order_detail.json</p>
+
+                <p>那么v2版本的访问是：</p>
+
+                <p>/v2/order/order_detail.json
+            </td>
+        </tr>
+
+        <tr>
+            <td>listType</td>
+            <td>string</td>
+            <td>否</td>
+            <td>枚举值：page，limit。在部分列表接口里面，都支持这两种分页方式。
+                </p>
+
+                <p>使用page这种分页方式可以返回具体记录总计、页数总计这个两个值，这种分页方式需要使用参数currentPage和pageSize两个参数控制</p>
+
+                <p>
+                    使用limit这种分页方式就是不返回会记录总计、页数总计。，这种分页方式需要使用currentPage和size两个参数控制，同可以直接传入offset参数，offset参数会比currentPage优先级高。</p>
+
+                <p>两者返回的具体结构差异请参考2.4</p>
+
+                <p>v1版本默认page，v2版本默认limit
+            </td>
+        </tr>
+
+        <tr>
+            <td>currentPage</td>
+            <td>Int</td>
+            <td>否</td>
+            <td>获取列表的时候的页码，只在获取列表类型接口时接受这个参数</td>
+        </tr>
+
+        <tr>
+            <td>offset</td>
+            <td>Int</td>
+            <td>否</td>
+            <td>获取列表的时候的列表偏移量，只在获取列表类型接口时接受这个参数。同时，这个参数比page优先，page最终在服务器端也是计算成offset。</td>
+        </tr>
+
+        <tr>
+            <td>size</td>
+            <td>Int</td>
+            <td>否</td>
+            <td>获取列表的时候的大小，只在获取列表类型接口时接受这个参数。注意这个是请求期望的大小，并不是实际的数据大小</td>
+        </tr>
+
+        <tr>
+            <td>returnDetail</td>
+            <td>Boolean</td>
+            <td>否</td>
+            <td>为了减少数据的传输量，由调用方控制是否返回被修改的对象（只在部分修改接口有控制）
+                </p>
+
+                <p>v1版本默认开启，v2版本默认关闭
+            </td>
+        </tr>
+
+        </tbody>
+    </table>
+
+    <p style="font-weight: bold; text-indent: 2em">2.3 授权机制</p>
+
+    <p style="margin-left: 2em">
+        使用标准的Oauth2.0协议进行授权，详情请查看<a ng-href="doc/OAuthV2.pdf" target="_blank"
+                                    class="bubble" style="background: #ed7d7d;">千橙工坊Oauth2.0服务文档</a>
+    </p>
+
+    <p style="font-weight: bold; text-indent: 2em">2.4 公共返回参数</p>
+
+    <p style="margin-left: 2em">千橙工坊API返回的数据是三段结构</p>
+    <div style="margin-left: 2em;">
+		<pre>
+{
+"code" : 返回状态码，业务成功完成是200,
+"message" : "返回信息",
+"data" : "返回数据结果（因接口不一样而一样）"
+}
+</pre>
+		<pre>
+{
+"code" : 返回状态码，业务成功完成是200,
+"message" : "返回信息",
+"data" : "返回数据结果（因接口不一样而一样）"
+}
+</pre>
+		<pre>&lt;Response&gt;
+&lt;code&gt;返回状态码，业务成功完成是200,&lt;/code&gt;
+&lt;message&gt;返回信息&lt;/message&gt;
+&lt;data&gt;因接口不一样而一样&lt;/data&gt;
+&lt;/Response&gt;
+</pre>
+        <p>用户发送的每次接口调用请求，无论成功与否，系统都会返回三段结构的数据给用户。但是除服务器返回502和503，504除外,所以当服务返回这个三个状态码的时候就不能处理json的方式处理返回的内容</p>
+
+        <p>所以在文档里面描述返回参数是指data里面的内容，并不包括code和message</p>
+
+        <p>列表分页返回结果</p>
+
+        <p>page类型</p>
+
+		<pre>{
+"code":200,
+"message":"操作成功",
+"data":
+{
+"currentPage":1,
+"items":[{}],
+"pageSize":1,
+"totalCount":451,
+"totalPage":451
+}
+}
+</pre>
+        <p>limit类型</p>
+		<pre>
+{
+"code":200,
+"data":
+{
+"items":[],
+"offset":0,"size":0
+},
+"message":"操作成功"
+}
+</pre>
+        <p style="font-weight: bold;">2.5 返回结果</p>
+
+        <p>
+            调用API服务后返回数据采用统一格式，返回的HTTP状态码为2xx，代表调用成功；返回4xx或5xx的HTTP状态码代表调用失败。调用成功返回的数据格式主要有XML和JSON两种，外部系统可以在请求时传入参数来制定返回的数据格式，默认为JSON格式。本文档中的返回示例为了便于用户查看，做了格式化处理，实际返回结果是没有进行换行、缩进等处理的。</p>
+
+        <p>关于返回httstatus</p>
+
+        <p>v1版本的API所有请求都是返回200，然后又返回数据的code来判断请求是否成功，但是服务器有可能会返回502,503,504</p>
+
+        <p>v2版本的API请求返回httpstatus如下面所示：</p>
+
+        <p>
+            <kbd>200</kbd>
+            表示成功请求，正常处理了业务
+        </p>
+
+        <p>
+            <kbd>3xx</kbd>
+            表示转调或者 （暂时我们没有这样的返回）
+        </p>
+
+        <p>
+            <kbd>400</kbd>
+            表示坏请求，一般表示请求的参数里面有非法参数或者没有一些必需的参数
+        </p>
+
+        <p>
+            <kbd>401</kbd>
+            表示没有登录，没有授权，token是非法的
+        </p>
+
+        <p>
+            <kbd>403</kbd>
+            表示禁止访问，没有访问这个uri的权限
+        </p>
+
+        <p>
+            <kbd>404</kbd>
+            表示找不到对应的资源处理，例如找不到订单之类的
+        </p>
+
+        <p>
+            <kbd>405</kbd>
+            表示请求方法不允许，例如不能使用get请求某个接口
+        </p>
+
+        <p>
+            <kbd>409</kbd>
+            表示uri请求的资源和服务器上面的资源产生冲突
+        </p>
+
+        <p>
+            <kbd>500</kbd>
+            表示服务器内部错误，具体的错误信息可以参考返回的return值里面的code
+        </p>
+
+        <p>
+            <kbd>502</kbd>
+            后端服务器问题
+        </p>
+
+        <p>
+            <kbd>503</kbd>
+            请求处理时间过长
+        </p>
+
+        <p>
+            <kbd>504</kbd>
+            服务器访问失败
+        </p>
+
+        <p style="font-weight: bold;">2.6 成功结果</p>
+
+        <p>JSON的返回：</p>
+		<pre>
+{ 
+"code" : 200,
+"message" : "操作成功",
+"data" : "返回数据结果（因接口不一样而一样）"
+}
+</pre>
+        <p>XML的返回：</p>
+		<pre>
+&lt;Response&gt;
+&lt;code&gt;200&lt;/code&gt;
+&lt;message&gt;操作成功&lt;/message&gt;
+&lt;data&gt;因接口不一样而一样&lt;/data&gt;
+&lt;/Response&gt;
+</pre>
+        <p style="font-weight: bold;">2.7 错误结果</p>
+
+        <p>调用接口出错后，调用方可根据返回结果数据对比附表&lt;错误代码表&gt;来定位错误原因。</p>
+
+        <p>
+            当调用出错时，HTTP请求返回一个4xx或5xx的HTTP状态码。返回的消息体中是具体的错误代码及错误信息。具体在返回的数据会一个三段式的结构数据，里面的message会描述具体的错误信息。在调用方找不到错误原因，可以联系千橙工坊客服，并提供该请求URL和返回的数据，以便我们尽快帮您解决问题。</p>
+
+        <p style="font-weight: bold;">2.8 接口访问频率限制</p>
+
+        <p>v2版的api会根据client_id类型的不一样对接口访问的频率有一些限制。具体查看限制的此时可以查看每个接口返回里面的http
+            header。里面有三个关于限制访问的参数</p>
+
+        <p>X-RateLimit-Reset 访问限制的重置时间</p>
+
+        <p>X-RateLimit-Remaining 这个时间内还剩余的请求调用次数</p>
+
+        <p>X-RateLimit-Limit 总限制次数</p>
+
+        <table class="table">
+
+            <tr>
+                <td>Client类型</td>
+                <td>每小时调用限制次数</td>
+            </tr>
+
+            <tr>
+                <td>测试类型</td>
+                <td>500</td>
+            </tr>
+
+            <tr>
+                <td>普通类型</td>
+                <td>5000</td>
+            </tr>
+
+            <tr>
+                <td>高级类型</td>
+                <td>不限制</td>
+            </tr>
+        </table>
+
+
+        <br/> <br/> <br/>
+
+    </div>
+
+</div>
+
+<div style="position: fixed; right: 0; bottom: 20px;">
+    <button class="btn btn-info" ng-click="back();">回到顶部</button>
+</div>

@@ -1,0 +1,50 @@
+<!--
+<ol class="breadcrumb">
+    <li class="active">主页</li>
+</ol>
+-->
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4>接入必读 </h4>
+    </div>
+    <div class="panel-body">
+        <a ng-href="#/overview" class="bubble">概述</a>
+        <a ng-href="doc/OAuthV2.pdf" target="_blank" class="bubble" style="background:#ed7d7d;">Oauth2.0接入指南</a>
+        <a ng-href="#/" class="bubble" style="background:#FFB245;">公共对象描述</a>
+    </div>
+</div>
+<div class="panel panel-default">
+
+    <div class="panel-heading">
+        <h4>接口分类 </h4>
+    </div>
+    <div class="panel-body">
+
+        <ul class="media-list">
+            <li class="media" ng-repeat="item in list">
+                <div class="in_box">
+                    <div class="p_pic">
+                        <a href="#/api/{{item.href}}" title="{{item.desc}}"><img ng-src="img/{{$index % 10}}.png?v=1.0"
+                                                                                 alt="{{item.desc}}"></a>
+                    </div>
+                    <div class="p_info">
+                        <div class="dname">
+                            <a class="a_hd" href="#/api/{{item.href}}" style="font-size:18px;">{{item.name}}</a>
+                        </div>
+                        <div class="dinfo">
+                            <div>
+                                <!-- 								<span title="{{item.desc}}"><span>{{item.desc}} -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <div class="clearfix"></div>
+    </div>
+
+    <div class="panel-footer">
+    </div>
+</div>
+
+
