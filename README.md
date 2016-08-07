@@ -4,5 +4,5 @@
 ![](https://raw.githubusercontent.com/iqiancheng/hornibills-plus/doc/images/preview-001.png)
 
 ## Demo
-[易️订货开放接口OpneAPI](http://wiki.dinghuo123.com)
+[易️订货开放接口OpenAPI](http://wiki.dinghuo123.com)
 
